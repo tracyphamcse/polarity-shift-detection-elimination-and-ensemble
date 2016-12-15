@@ -148,7 +148,7 @@ def main(domains):
         train(domain, 'no_shift')
         # # write_file('data_train/' + domain + '/no_shift-report.txt', report)
 
-        train(domain, 'based')
+        train(domain, 'processed')
         # write_file('data_train/' + domain + '/no_shift-report.txt', report)
 
 def main_test(domains):
@@ -165,8 +165,8 @@ def main_test(domains):
         # test('data_train',domain, 'no_shift')
         test('data_test',domain, 'no_shift')
 
-        # test('data_train',domain, 'based')
-        test('data_test',domain, 'based')
+        # test('data_train',domain, 'processed')
+        test('data_test',domain, 'processed')
 
 
 def help():

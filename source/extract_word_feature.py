@@ -58,7 +58,7 @@ def main(d_type, domains):
         extract_features(d_type, domain, 'negation')
         extract_features(d_type, domain, 'inconsistence')
         extract_features(d_type, domain, 'no_shift')
-        extract_features(d_type, domain, 'based')
+        extract_features(d_type, domain, 'processed')
         print '----'
 
 def help():

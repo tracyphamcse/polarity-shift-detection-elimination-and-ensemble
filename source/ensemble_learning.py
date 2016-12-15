@@ -23,11 +23,11 @@ def flat_label_pred(label):
 def get_feature(d_type, domain):
 
     dump_feature = {}
-    for d_name in ['contrast', 'inconsistence', 'negation', 'no_shift', 'based']:
+    for d_name in ['contrast', 'inconsistence', 'negation', 'no_shift', 'processed']:
         dump_feature[d_name] = pickle.load(open('resources/{}/{}/pickles/ensemble_feature.{}.pk'.format(d_type, domain, d_name), 'rb'))
     # print dump_feature['contrast']
 
-    feature = zip(dump_feature['contrast'], dump_feature['inconsistence'], dump_feature['negation'], dump_feature['no_shift'], dump_feature['no_shift'],dump_feature['no_shift'], dump_feature['based'], dump_feature['based'], dump_feature['based'])
+    feature = zip(dump_feature['contrast'], dump_feature['inconsistence'], dump_feature['negation'], dump_feature['no_shift'], dump_feature['no_shift'],dump_feature['no_shift'], dump_feature['processed'], dump_feature['processed'], dump_feature['processed'])
     # feature = zip(dump_feature['contrast'], dump_feature['inconsistence'], dump_feature['negation'], dump_feature['no_shift'], dump_feature['no_shift'], dump_feature['no_shift'])
 
     feature = [flat_label_pred(f) for f in feature]
@@ -66,19 +66,19 @@ def train(domain):
         pickle.dump(classifier, f)
     return classifier, report
 
-def test_product_rule(data, target):
-    y_pred = []
-    for d in data:
-        if (d[0] * d[2] * d[4] * d[6] * d[8] * d[10] * d[12] * d[14] * d[16] > d[1] * d[3] * d[5] * d[7] * d[9] * d[11] * d[13] * d[15] * d[17] ):
-            y_pred.append(0)
-        else:
-            y_pred.append(1)
+# def test_product_rule(data, target):
+#     y_pred = []
+#     for d in data:
+#         if (d[0] * d[2] * d[4] * d[6] * d[8] * d[10] * d[12] * d[14] * d[16] > d[1] * d[3] * d[5] * d[7] * d[9] * d[11] * d[13] * d[15] * d[17] ):
+#             y_pred.append(0)
+#         else:
+#             y_pred.append(1)
 
-    acc = accuracy_score(target, y_pred)
-    report = classification_report(target, y_pred)
+#     acc = accuracy_score(target, y_pred)
+#     report = classification_report(target, y_pred)
 
-    print 'Accuracy: ' , acc
-    print report
+#     print 'Accuracy: ' , acc
+#     print report
 
 def test(domain, classifier):
     X = get_feature('data_test', domain)
